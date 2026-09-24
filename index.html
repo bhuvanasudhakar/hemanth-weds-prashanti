@@ -263,7 +263,7 @@ footer .script{font-size:32px;font-style:italic}
 <!-- ============ SCRATCH ============ -->
 <section class="scr">
   <div class="wrap reveal">
-    <div class="caps" style="color:var(--muted)">Save the date</div>
+    <div class="caps" style="color:var(--muted)">A little surprise</div>
     <h2>Our big day</h2>
     <div class="card" id="scard">
       <div class="under">
@@ -371,8 +371,9 @@ footer .script{font-size:32px;font-style:italic}
   document.getElementById('light').addEventListener('click',light);
   function twinkle(){setInterval(function(){for(var k=0;k<6;k++){var c=all[Math.floor(Math.random()*all.length)][0];c.style.transitionDelay='0ms';c.style.opacity='.35';(function(c){setTimeout(function(){c.style.opacity=''},300)})(c)}},500)}
   // reveal on scroll
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0,rootMargin:"0px 0px -8% 0px"});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  window.addEventListener('scroll',function(){document.querySelectorAll('.reveal:not(.in)').forEach(function(el){if(el.getBoundingClientRect().top<innerHeight){el.classList.add('in')}})},{passive:true});
   // countdown to muhurtham 16 Nov 2026 9:20 IST
   var T=new Date('2026-11-16T09:20:00+05:30').getTime();var cb=document.querySelectorAll('#count b');
   function tick(){var d=Math.max(0,T-Date.now());var v=[Math.floor(d/864e5),Math.floor(d/36e5)%24,Math.floor(d/6e4)%60,Math.floor(d/1e3)%60];cb.forEach(function(b,i){b.textContent=String(v[i]).padStart(2,'0')})}
